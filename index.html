@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Apple Day Field Book — MOD007198 Companion Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#182417;
+    --ink-soft:#24331f;
+    --paper:#f2ecd9;
+    --paper-2:#e8e0c8;
+    --paper-3:#ddd3b3;
+    --text:#22261c;
+    --text-soft:#4c5142;
+    --text-onink:#efe8d3;
+    --text-onink-soft:#b9c2ac;
+    --amber:#a9691c;
+    --amber-deep:#7d4c14;
+    --leaf:#3f6b3d;
+    --leaf-deep:#2c4d2b;
+    --windfall:#93392a;
+    --windfall-deep:#6e2a1e;
+    --line:#c9bd97;
+    --line-dark:#3a4a33;
+    --radius:3px;
+    --serif:"Fraunces", Georgia, serif;
+    --sans:"Work Sans", -apple-system, sans-serif;
+    --mono:"JetBrains Mono", "SF Mono", monospace;
+    --shadow: 0 1px 0 rgba(24,36,23,0.06), 0 8px 24px -12px rgba(24,36,23,0.25);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber);color:var(--text-onink);}
+
+  a{color:var(--amber-deep);}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--text);margin:0 0 .5em;letter-spacing:-0.01em;}
+  p{margin:0 0 1em;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--amber-deep);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--amber-deep);display:inline-block;}
+
+  /* ---------- layout shell ---------- */
+  .shell{display:flex;min-height:100vh;}
+  .field-gate{
+    width:252px;
+    flex:none;
+    background:var(--ink);
+    color:var(--text-onink);
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+    padding:22px 16px 30px;
+    border-right:1px solid var(--line-dark);
+  }
+  .field-gate::-webkit-scrollbar{width:6px;}
+  .field-gate::-webkit-scrollbar-thumb{background:var(--line-dark);border-radius:4px;}
+  .gate-brand{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:6px 8px 18px;
+    border-bottom:1px solid var(--line-dark);
+    margin-bottom:14px;
+  }
+  .gate-brand svg{flex:none;margin-top:2px;}
+  .gate-brand-text .k1{
+    font-family:var(--serif);
+    font-size:15px;
+    font-weight:600;
+    line-height:1.2;
+    color:var(--text-onink);
+  }
+  .gate-brand-text .k2{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-onink-soft);
+    letter-spacing:.05em;
+    margin-top:3px;
+  }
+  .gate-nav{display:flex;flex-direction:column;gap:2px;}
+  .gate-group{margin-bottom:14px;}
+  .gate-label{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-onink-soft);
+    padding:0 10px;
+    margin:0 0 6px;
+  }
+  .gate-link{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    padding:7px 10px;
+    border-radius:var(--radius);
+    color:var(--text-onink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+    transition:background .15s, color .15s;
+  }
+  .gate-link .tag{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--amber);
+    flex:none;
+    width:26px;
+  }
+  .gate-link:hover{background:rgba(239,232,211,0.06);color:var(--text-onink);}
+  .gate-link.active{background:rgba(169,105,28,0.18);color:var(--text-onink);}
+  .gate-weight{
+    margin-left:auto;
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-onink-soft);
+  }
+
+  main{flex:1;min-width:0;}
+  .wrap{max-width:860px;margin:0 auto;padding:64px 40px 40px;}
+  @media (max-width:840px){
+    .field-gate{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);transition:transform .25s ease;z-index:50;box-shadow:12px 0 40px rgba(0,0,0,.3);}
+    .field-gate.open{transform:translateX(0);}
+    .wrap{padding:88px 20px 40px;}
+    .gate-toggle{display:flex !important;}
+  }
+  .gate-toggle{
+    display:none;
+    position:fixed;
+    top:14px;left:14px;
+    z-index:60;
+    background:var(--ink);
+    color:var(--text-onink);
+    border:1px solid var(--line-dark);
+    border-radius:var(--radius);
+    padding:9px 12px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+  }
+
+  section.panel{margin-bottom:56px;scroll-margin-top:24px;}
+  .card{
+    background:#faf7ec;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px 26px;
+    box-shadow:var(--shadow);
+  }
+  .card + .card{margin-top:16px;}
+
+  /* ---------- orchard row divider (signature element) ---------- */
+  .row-divider{width:100%;height:34px;margin:40px 0;opacity:.85;}
+  .row-divider .tree{stroke:var(--line);}
+
+  /* ---------- hero ---------- */
+  .cover{
+    background:var(--ink);
+    color:var(--text-onink);
+    border-radius:var(--radius);
+    padding:52px 44px 40px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line-dark);
+  }
+  .cover-orchard{position:absolute;inset:auto 0 0 0;height:120px;opacity:.35;}
+  .cover h1{
+    color:var(--text-onink);
+    font-size:44px;
+    line-height:1.05;
+    max-width:11ch;
+    margin-bottom:14px;
+  }
+  .cover .lede{
+    color:var(--text-onink-soft);
+    max-width:52ch;
+    font-size:15.5px;
+    position:relative;
+    z-index:2;
+  }
+  .cover .stamp{
+    position:relative;
+    z-index:2;
+    display:inline-flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:26px;
+    padding-top:20px;
+    border-top:1px solid var(--line-dark);
+  }
+  .stamp-item{font-family:var(--mono);font-size:11.5px;color:var(--text-onink-soft);}
+  .stamp-item b{color:var(--amber);display:block;font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:2px;}
+
+  .callout{
+    border-left:3px solid var(--amber-deep);
+    background:var(--paper-2);
+    padding:14px 18px;
+    border-radius:0 var(--radius) var(--radius) 0;
+    font-size:14.5px;
+    margin:16px 0;
+  }
+  .callout.warn{border-left-color:var(--windfall-deep);background:#f2ded8;}
+  .callout.good{border-left-color:var(--leaf-deep);background:#e2ead9;}
+  .callout b{color:var(--text);}
+
+  /* ---------- rubric map ---------- */
+  .rubric-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .rubric-row{
+    display:grid;
+    grid-template-columns:52px 1fr auto;
+    gap:16px;
+    align-items:center;
+    padding:16px 18px;
+    background:#faf7ec;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .rubric-num{
+    font-family:var(--serif);
+    font-size:26px;
+    font-weight:600;
+    color:var(--amber-deep);
+    line-height:1;
+  }
+  .rubric-row h3{font-size:17px;margin-bottom:3px;}
+  .rubric-row .sub{font-size:13px;color:var(--text-soft);}
+  .rubric-pct{
+    font-family:var(--mono);
+    font-size:19px;
+    font-weight:700;
+    color:var(--text);
+    background:var(--paper-3);
+    padding:6px 12px;
+    border-radius:var(--radius);
+    white-space:nowrap;
+  }
+  .sub-bars{display:flex;gap:2px;margin-top:8px;height:5px;border-radius:3px;overflow:hidden;}
+  .sub-bars span{display:block;height:100%;}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);font-weight:600;border-bottom:2px solid var(--text);}
+  tr:last-child td{border-bottom:none;}
+  td.num, th.num{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+  .table-wrap{overflow-x:auto;margin:14px 0;}
+  .tag-pill{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:10px;
+    padding:2px 7px;
+    border-radius:20px;
+    background:var(--paper-3);
+    color:var(--text);
+  }
+  .tag-pill.crit{background:var(--windfall);color:#fbeee9;}
+  .tag-pill.milestone{background:var(--ink);color:var(--text-onink);}
+
+  footer{
+    padding:30px 40px 60px;
+    color:var(--text-soft);
+    font-size:12.5px;
+    max-width:860px;
+    margin:0 auto;
+  }
+
+  .part-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .part-head .no{font-family:var(--mono);color:var(--amber-deep);font-size:14px;}
+  .word-budget{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--text-soft);
+    background:var(--paper-2);
+    padding:4px 10px;
+    border-radius:20px;
+    margin-left:auto;
+  }
+
+  ul.tight{margin:0 0 1em;padding-left:20px;}
+  ul.tight li{margin-bottom:6px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:640px){.two-col{grid-template-columns:1fr;} .rubric-row{grid-template-columns:36px 1fr;} .rubric-pct{grid-column:2;justify-self:start;}}
+
+  code, .kbd{font-family:var(--mono);background:var(--paper-3);padding:1px 6px;border-radius:3px;font-size:12.5px;}
+  hr.thin{border:none;border-top:1px solid var(--line);margin:22px 0;}
+
+  .chk-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:8px 6px;
+    border-radius:var(--radius);
+    font-size:14px;
+    cursor:pointer;
+    transition:background .12s;
+  }
+  .chk-row:hover{background:var(--paper-2);}
+  .chk-row input{margin-top:3px;flex:none;width:15px;height:15px;accent-color:var(--leaf-deep);cursor:pointer;}
+  .chk-row:has(input:checked){color:var(--text-soft);text-decoration:line-through;text-decoration-color:var(--line);}
+</style>
+</head>
+<body>
+
+<button class="gate-toggle" onclick="document.querySelector('.field-gate').classList.toggle('open')">☰ Field Book</button>
+
+<div class="shell">
+  <nav class="field-gate">
+    <div class="gate-brand">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="14" r="8" stroke="#efe8d3" stroke-width="1.4"/>
+        <path d="M13 6c0-2 1.5-3.2 3-3.6" stroke="#a9691c" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M13 6.5c-1-1-1.6-1-2.6-.6" stroke="#3f6b3d" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <div class="gate-brand-text">
+        <div class="k1">The Apple Day<br>Field Book</div>
+        <div class="k2">MOD007198 · Companion</div>
+      </div>
+    </div>
+    <div class="gate-nav" id="gateNav">
+      <div class="gate-group">
+        <a class="gate-link" href="#cover"><span class="tag">00</span> Start here</a>
+        <a class="gate-link" href="#rubric"><span class="tag">—</span> Rubric map</a>
+      </div>
+      <div class="gate-group">
+        <div class="gate-label">The report</div>
+        <a class="gate-link" href="#part1"><span class="tag">P1</span> Skills of a PM &amp; me <span class="gate-weight">25%</span></a>
+        <a class="gate-link" href="#part2"><span class="tag">P2</span> Charter &amp; proposal <span class="gate-weight">35%</span></a>
+        <a class="gate-link" href="#part3"><span class="tag">P3</span> Plan &amp; resourcing <span class="gate-weight">20%</span></a>
+        <a class="gate-link" href="#planner"><span class="tag">⚙</span> MS Planner workshop</a>
+        <a class="gate-link" href="#part4"><span class="tag">P4</span> Managing implementation <span class="gate-weight">20%</span></a>
+      </div>
+      <div class="gate-group">
+        <div class="gate-label">Reference</div>
+        <a class="gate-link" href="#vault"><span class="tag">▣</span> Case data vault</a>
+        <a class="gate-link" href="#templates"><span class="tag">▤</span> Blank templates</a>
+        <a class="gate-link" href="#checklist"><span class="tag">✓</span> Pre-submission check</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+
+      <section class="panel" id="cover">
+        <div class="cover">
+          <svg class="cover-orchard" viewBox="0 0 900 120" preserveAspectRatio="none">
+            <line x1="0" y1="110" x2="900" y2="110" stroke="#3a4a33" stroke-width="1"/>
+            <g id="treeRowHero"></g>
+          </svg>
+          <div class="eyebrow" style="color:#c98a3f">Aruthiana Fruits · Apple Day Big Weekend, 24–25 Oct 2026</div>
+          <h1>Field notes for building<br>an A‑grade assignment</h1>
+          <p class="lede">This is a working companion for the MOD007198 individual assignment — not the assignment itself. It maps every section of the brief to what markers are actually looking for, organises the Aruthiana Fruits case data so you're not re-mining the PDF at 1am, and walks you through Microsoft Planner step by step for Part 3. It will not write your Charter, your reflection, or your budget report — those are yours to build.</p>
+          <div class="stamp">
+            <div class="stamp-item"><b>3,000</b>words total</div>
+            <div class="stamp-item"><b>80%</b>of module mark</div>
+            <div class="stamp-item"><b>3 Aug 2026</b>submission</div>
+            <div class="stamp-item"><b>4</b>report sections</div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:20px;">
+          <b>How to use this field book —</b> work down the left-hand list in order. Read a Part's guidance, pull the data you need from the <a href="#vault">Case Data Vault</a>, draft in the <a href="#templates">blank templates</a>, then tick it off in the <a href="#checklist">pre-submission check</a>. The MS Planner workshop sits between Part 3 and Part 4 because you'll build the plan once and use it for both.
+        </div>
+      </section>
+
+      <section class="panel" id="rubric">
+        <div class="eyebrow">The whole brief, at a glance</div>
+        <h2>Rubric map</h2>
+        <p style="color:var(--text-soft);max-width:60ch;">Four sections, four different jobs. Note the pattern: Parts 1 is the only place you write in the first person — Parts 2 and 4 want an objective, third‑person business report voice. Mixing these up is one of the fastest ways to lose easy marks.</p>
+
+        <div class="rubric-grid">
+          <div class="rubric-row">
+            <div class="rubric-num">1</div>
+            <div>
+              <h3>Skills of a Project Manager and me</h3>
+              <div class="sub">1.1 Knowledge &amp; skills needed (10%) · 1.2 Reflect on your own, start vs. end of module (15%) · ~1,000 words · 1st person</div>
+              <div class="sub-bars"><span style="width:40%;background:var(--amber-deep)"></span><span style="width:60%;background:var(--leaf-deep)"></span></div>
+            </div>
+            <div class="rubric-pct">25%</div>
+          </div>
+
+          <div class="rubric-row">
+            <div class="rubric-num">2</div>
+            <div>
+              <h3>Proposal &amp; Project Charter for Apple Day</h3>
+              <div class="sub">2.1 Managing events as projects, stakeholders &amp; risk (15%) · 2.2 Full Project Charter (20%) · ~1,000 words · 3rd person</div>
+              <div class="sub-bars"><span style="width:43%;background:var(--amber-deep)"></span><span style="width:57%;background:var(--leaf-deep)"></span></div>
+            </div>
+            <div class="rubric-pct">35%</div>
+          </div>
+
+          <div class="rubric-row">
+            <div class="rubric-num">3</div>
+            <div>
+              <h3>Project Plan &amp; Resourcing</h3>
+              <div class="sub">3.1 Timeline/Gantt &amp; Board in MS Planner (10%) · 3.2 Resourcing &amp; budget report (10%) · ~400 words</div>
+              <div class="sub-bars"><span style="width:50%;background:var(--amber-deep)"></span><span style="width:50%;background:var(--leaf-deep)"></span></div>
+            </div>
+            <div class="rubric-pct">20%</div>
+          </div>
+
+          <div class="rubric-row">
+            <div class="rubric-num">4</div>
+            <div>
+              <h3>Managing Implementation</h3>
+              <div class="sub">Pick 2 of 13 issue scenarios · re-worked Gantt + management response each · ~600 words (300 each) · 3rd person</div>
+              <div class="sub-bars"><span style="width:100%;background:var(--windfall-deep)"></span></div>
+            </div>
+            <div class="rubric-pct">20%</div>
+          </div>
+        </div>
+
+        <div class="callout good" style="margin-top:18px;">
+          <b>Weighting reality check —</b> Part 2 is worth more than Parts 3 and 4 combined. If you're rationing revision or editing time, the Charter and the events-as-projects proposal are where it pays off most per hour spent.
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="part1">
+        <div class="part-head">
+          <span class="no">Part 1</span>
+          <h2 style="margin:0;">Skills of a Project Manager and me</h2>
+          <span class="word-budget">≈1,000 words · 1st person</span>
+        </div>
+        <p style="color:var(--text-soft);">LO1, LO2, LO4 · 1.1 due weeks 1–3, 1.2 started weeks 1–3 and finished weeks 10–12.</p>
+
+        <div class="card">
+          <h3>1.1 — Knowledge and skills needed (10%)</h3>
+          <p>Build one table covering three categories, each with real references attached — not a list of buzzwords:</p>
+          <ul class="tight">
+            <li><b>Soft skills</b> — teamwork, leadership, communication, negotiation, conflict handling</li>
+            <li><b>Organisational skills</b> — planning, time management, prioritisation, delegation</li>
+            <li><b>Technical skills</b> — scheduling software, budgeting tools, and explicitly, use of AI</li>
+          </ul>
+          <p style="margin-top:14px;">Where to find citable material fast (the readings the module points you to):</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Source</th><th>What to pull from it</th></tr>
+              <tr><td>APM (2019) <i>The Golden Thread</i></td><td>Skills list, p.20 — cost control, planning/monitoring, strategic management, leadership, risk management, digital skills, PM qualifications, breadth of thinking, coaching/mentoring, stakeholder communication</td></tr>
+              <tr><td>PMI &amp; PwC (2021/2022) <i>Narrowing the Talent Gap</i></td><td>The 5 capabilities, p.7 — relationship building/communication, collaborative leadership, strategic thinking, creative problem solving, commercial awareness</td></tr>
+              <tr><td>Crawford (2005)</td><td>Competence model, p.9</td></tr>
+              <tr><td>Nijhuis et al. (2018)</td><td>Competence literature review p.68, focus-group results Fig.5 p.70</td></tr>
+              <tr><td>APM (2021) <i>What does a Project Manager do?</i></td><td>Task/activity list — good for the organisational-skills column</td></tr>
+            </table>
+          </div>
+          <div class="callout"><b>A-grade signal:</b> two sources that partly disagree (e.g. Golden Thread's broad list vs. PMI/PwC's finding that <i>people</i> skills top senior leaders' rankings) and a sentence saying what that tension means for you, beats five sources that all just get name-dropped.</div>
+        </div>
+
+        <div class="card">
+          <h3>1.2 — Reflect on your own knowledge, skills and competencies (15%)</h3>
+          <p><b>Weeks 1–3:</b> critically analyse your <i>current</i> ability against every row in your 1.1 table. Complete a CPD-style table or planner with reflections on prior project experience — paid work, placements, society committees, sports teams, group coursework all count.</p>
+          <p><b>Weeks 10–12:</b> close the loop — what did you actually learn, across soft/organisational/technical skills, and what did your Study Buddies Buddycheck feedback tell you that you didn't already know about yourself?</p>
+          <div class="two-col">
+            <div class="callout warn">
+              <b>Weak version:</b> a claim with no evidence — <i>"my communication skills are great, I present confidently and write well."</i> A marker can't verify or credit a bare assertion.
+            </div>
+            <div class="callout good">
+              <b>Stronger version:</b> claim → evidence → explanation → honest gap. State the skill, ground it in a specific real example, explain what that experience actually built, and name one thing that's still developing.
+            </div>
+          </div>
+          <p style="margin-top:14px;">Structure each skill entry the same way every time: <span class="tag-pill">claim</span> <span class="tag-pill">evidence</span> <span class="tag-pill">explanation</span> <span class="tag-pill">honest gap or growth</span>. Optional: a simple before/after bar chart or scorecard (1–5 per skill) — this doesn't count toward the word limit and gives markers an instant visual of your development.</p>
+        </div>
+
+        <div class="callout warn"><b>Things to avoid, straight from the brief:</b> exaggerating in either direction — overselling <i>or</i> being needlessly hard on yourself. Both read as un-reflective rather than honest.</div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="part2">
+        <div class="part-head">
+          <span class="no">Part 2</span>
+          <h2 style="margin:0;">Proposal &amp; Project Charter for Apple Day</h2>
+          <span class="word-budget">≈1,000 words · 3rd person, objective</span>
+        </div>
+        <p style="color:var(--text-soft);">LO1, LO2, LO4 · This is worth more than Parts 3 and 4 combined — give it the time.</p>
+
+        <div class="card">
+          <h3>2.1 — Proposal for managing events as projects (15%)</h3>
+          <p>The brief gives you four bullet points to hit, in order. Treat each as its own short sub-argument with a reference, not a paragraph of opinion.</p>
+
+          <hr class="thin">
+          <p><b>① Why should event hosting be run as a project?</b> Don't argue this in the abstract — use Easter on the Farm as your evidence base, then map what went wrong onto recognised project characteristics:</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Maylor &amp; Turner (2022, p.8) characteristic</th><th>Where you saw it at Easter on the Farm</th></tr>
+              <tr><td>Temporary / fixed start-end</td><td>4-day event, but nobody planned it as bounded work with an end</td></tr>
+              <tr><td>Emergence &amp; uncertainty</td><td>Footfall (750→5,800) was never estimated in advance</td></tr>
+              <tr><td>Integrating</td><td>Restaurant, juice factory, marquee and stallholders all had to interlock — and didn't</td></tr>
+              <tr><td>Change / impacts people</td><td>Staff resignation, near-miss in the car park, insurance gaps</td></tr>
+              <tr><td>Social construction</td><td>Family disagreement over whose responsibility parking and stock-outs were</td></tr>
+            </table>
+          </div>
+          <p>You can make the identical point using the PM triangle / PMI (2017, p.580) constraints instead or as well — scope crept weekly in the run-up, nobody owned a schedule baseline, and quality (queues, stock-outs) suffered because resources weren't ring-fenced.</p>
+
+          <hr class="thin">
+          <p><b>② Propose PM processes, roles and governance for Aruthiana.</b> Anchor this to what the board already asked for in the transcript — they want a single decision-maker, ring-fenced core-operation staff, and a gate before the event. Useful structure to propose:</p>
+          <ul class="tight">
+            <li>A named <b>project sponsor</b> (Clara, per the brief — you report to her) and a defined <b>PM authority level</b></li>
+            <li><b>Stage gates</b> mirroring the sprint milestones already used in the Apple Day plan — sign-off points where the sponsor formally approves before the next sprint starts</li>
+            <li>A lightweight <b>change control</b> step — any new "nice-to-have" needs sponsor sign-off and a budget line, full stop (this directly prevents the William-adds-a-band problem from the transcript)</li>
+            <li>Ring-fenced resourcing — operational staff (kitchen, juice factory) stay on BAU; event staffing is separately costed</li>
+          </ul>
+
+          <hr class="thin">
+          <p><b>③ Explain the need for stakeholder management, and design an approach.</b> This is the standard power/interest grid (commonly attributed to Mendelow, 1991) shown in your workshop slides:</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th></th><th>Low interest</th><th>High interest</th></tr>
+              <tr><td><b>High power</b></td><td>Keep satisfied — enough involvement to avoid surprises</td><td>Key player — manage actively, highest priority</td></tr>
+              <tr><td><b>Low power</b></td><td>Monitor only — don't overload with updates</td><td>Keep informed — sustain interest, leverage when useful</td></tr>
+            </table>
+          </div>
+          <p>Design this as a reusable <i>organisational</i> approach (a stakeholder register template + a standing communication cadence per quadrant), not a one-off list — the brief asks for something Aruthiana can reuse on future events. Pull real candidate names from the <a href="#vault">Case Data Vault</a> stakeholder roll-call below rather than inventing generic ones.</p>
+
+          <hr class="thin">
+          <p><b>④ Examine the significance of risk management, and design an approach.</b> Reference the standard four-stage cycle (plan → identify → analyse → risk response → implement) and the probability/impact grid from your slides. Worth naming explicitly: <b>ISO 20121</b> is the international standard specifically for sustainable event management — genuinely relevant here given the brief's own sustainability requirement, and a strong, precise reference to use.</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Probability ↓ / Severity →</th><th class="num">1 Negligible</th><th class="num">2 Marginal</th><th class="num">3 Significant</th><th class="num">4 Critical</th><th class="num">5 Catastrophic</th></tr>
+              <tr><td>5 Frequent</td><td class="num">R</td><td class="num">U</td><td class="num">I</td><td class="num">I</td><td class="num">I</td></tr>
+              <tr><td>4 Probable</td><td class="num">R</td><td class="num">R</td><td class="num">U</td><td class="num">I</td><td class="num">I</td></tr>
+              <tr><td>3 Occasional</td><td class="num">A</td><td class="num">R</td><td class="num">U</td><td class="num">U</td><td class="num">I</td></tr>
+              <tr><td>2 Remote</td><td class="num">A</td><td class="num">A</td><td class="num">R</td><td class="num">U</td><td class="num">U</td></tr>
+              <tr><td>1 Impossible</td><td class="num">A</td><td class="num">A</td><td class="num">A</td><td class="num">R</td><td class="num">R</td></tr>
+            </table>
+          </div>
+          <p style="font-size:13px;color:var(--text-soft);">A = Acceptable · R = Reviewable/Tolerable · U = Undesirable · I = Intolerable, as given in your workshop slides.</p>
+        </div>
+
+        <div class="card">
+          <h3>2.2 — Project Charter for the Apple Day initiation (20%)</h3>
+          <p>The brief states a <b>minimum</b> of three elements, but also recaps a fuller, better-practice list from week 3. Build to the fuller list — the minimum is a floor, not a target.</p>
+          <div class="two-col">
+            <div>
+              <p style="font-weight:600;font-size:13.5px;margin-bottom:6px;">Minimum required (brief, 2.2)</p>
+              <ul class="tight" style="font-size:13.5px;">
+                <li>Scope, goal and objectives</li>
+                <li>Stakeholder analysis &amp; communication approach</li>
+                <li>Risk analysis, including sustainability</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-weight:600;font-size:13.5px;margin-bottom:6px;">Full Charter contents (week 3 recap)</p>
+              <ul class="tight" style="font-size:13.5px;">
+                <li>Project purpose</li>
+                <li>Measurable (SMART) objectives &amp; success criteria</li>
+                <li>High-level requirements</li>
+                <li>Description, boundaries, key deliverables</li>
+                <li>Overall project risk</li>
+                <li>Summary milestone schedule</li>
+                <li>Pre-approved financial resources</li>
+                <li>Key stakeholder list</li>
+                <li>Approval requirements — who decides success, who signs off</li>
+                <li>Exit criteria — conditions to close or cancel</li>
+                <li>PM's assigned responsibility &amp; authority level</li>
+                <li>Sponsor's name and authority</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout"><b>Where the numbers already exist for you:</b> pre-approved financial resources = the £43,000 budget in the <a href="#vault">Vault</a>. Milestone schedule = your four sign-off milestones plus the fixed 7 Oct board review. Sponsor = Clara Aruthiana-Addo. You still have to write the purpose, objectives, requirements, boundaries and exit criteria yourself — that's the actual graded thinking.</div>
+          <div class="callout warn"><b>Tone check:</b> the brief explicitly says avoid first-person narrative here — write as the objective document Aruthiana's board would sign, not as you describing your plan.</div>
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="part3">
+        <div class="part-head">
+          <span class="no">Part 3</span>
+          <h2 style="margin:0;">Project Plan &amp; Resourcing for Apple Day</h2>
+          <span class="word-budget">≈400 words · landscape orientation</span>
+        </div>
+        <p style="color:var(--text-soft);">LO1, LO4 · Short word count, but the artefacts (Gantt/Timeline, Board, resource charts, budget report) carry real weight — this is the part where a screenshot with no explanation loses marks, and an explanation with no screenshot loses different marks. You need both.</p>
+
+        <div class="card">
+          <h3>3.1 — Project Plan and Explanation (10%)</h3>
+          <p>Two things are being assessed here: a short explanation of <i>why</i> scheduling software and AI help planning (single source of truth vs. scattered spreadsheets, automatic date recalculation when a predecessor slips, AI-assisted duration/status summarisation), and the actual Timeline (Gantt) and Board views built from the case study's sprint data.</p>
+          <div class="callout good">Full step-by-step build is in the <a href="#planner">MS Planner workshop</a> below — the case study's 5 sprints, tasks, durations and dependencies are already transcribed into an entry-ready table there so you're not re-reading the PDF while also learning the software.</div>
+        </div>
+
+        <div class="card">
+          <h3>3.2 — Project Resourcing and Budgeting (10%)</h3>
+          <p>Explain resource workload management and budgeting technique, then produce a people/resource report and chart from Planner, and a simple budget report using the case study's £43,000 figure.</p>
+          <div class="callout good">The full worked budget method — fixed costs, PM work-effort hours at £60/hr, and how much headroom is left for the four undefined tasks — is in the <a href="#planner">MS Planner workshop</a>, in the Resourcing &amp; Budget part.</div>
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="planner">
+        <div class="eyebrow">Tool skill, not theory</div>
+        <h2>The MS Planner workshop</h2>
+        <p style="color:var(--text-soft);max-width:64ch;">Everything below maps the case study's own task list onto Microsoft Planner's actual views, verified against the current (2026) <span class="kbd">planner.cloud.microsoft</span> interface. Build this once — it feeds both halves of Part 3.</p>
+
+        <div class="callout warn">
+          <b>Check this before you type a single task in.</b> Timeline (Gantt), dependencies, milestones and sprint buckets are all <i>Premium</i> features. If your plan was created as a <b>Basic</b> plan, the Timeline tab won't appear even with a premium licence attached to your account — the plan itself has to be created as Premium/Advanced from the start. When you create your plan, look for an explicit "Premium"/"Advanced" plan type option, or duplicate the shared "Events Expert App" plan type your seminar already used, which has Grid, Board, Charts and (with the right licence) Timeline.
+        </div>
+
+        <div class="card">
+          <h3>Access &amp; setup</h3>
+          <ol>
+            <li>Go to <span class="kbd">planner.cloud.microsoft</span> and sign in with your ARU account.</li>
+            <li><b>New plan →</b> name it <i>Apple Day Big Weekend Preparation</i>. Choose the Premium/Advanced plan type (see warning above).</li>
+            <li>In <b>Board view</b>, create five buckets, named exactly as the case study's sprints so your Board reads as a direct translation of the brief:</li>
+          </ol>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Bucket (= sprint)</th></tr>
+              <tr><td>Sprint 1: Concept and Foundations</td></tr>
+              <tr><td>Sprint 2: Bookings, Vendors and Ordering Supplies</td></tr>
+              <tr><td>Sprint 3: Marketing and Operations</td></tr>
+              <tr><td>Sprint 4: Farm Preparation</td></tr>
+              <tr><td>Sprint 5: Brief Aruthiana Fruits Management on the Setup</td></tr>
+            </table>
+          </div>
+          <div class="callout"><b>On "summary tasks":</b> the brief asks for sprints to show as buckets in Board view and as <i>summary tasks</i> in Timeline/Grid. Planner's Timeline doesn't generate true indented roll-up bars the way classic MS Project does — its structure is bucket-based, not a WBS. The direct equivalent is to switch on <span class="kbd">Group by Bucket</span> in both Grid and Timeline views, so each sprint appears as a visual grouping header over its tasks. Say this explicitly in your 3.1 write-up — naming the limitation and how you worked around it is itself evidence of software fluency, which is exactly what LO4 wants.</div>
+        </div>
+
+        <div class="card">
+          <h3>The task &amp; dependency map</h3>
+          <p>Transcribed directly from the case study's task table so you can enter it straight into Grid view. <span class="tag-pill milestone">milestone</span> rows are zero-duration. Rows marked <b>(*)</b> are the ones you must decide — durations shown are illustrative slots only, not answers.</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>#</th><th>Task</th><th>Bucket</th><th class="num">Duration</th><th class="num">PM effort</th><th>Predecessor(s)</th></tr>
+              <tr><td class="num">T1</td><td>Discuss H&amp;S with Maidstone Safety Advisory Group &amp; insurance company</td><td>Sprint 1</td><td class="num">2 weeks</td><td class="num">6h</td><td>Project start — 29 Jun 2026</td></tr>
+              <tr><td class="num">T2</td><td>Develop apple-themed Orchard Restaurant Menu with Head Chef</td><td>Sprint 1</td><td class="num">16 days</td><td class="num">32h</td><td>T1</td></tr>
+              <tr><td class="num">T3</td><td>Design event layout, activities and parking</td><td>Sprint 1</td><td class="num">2 weeks</td><td class="num">12h</td><td>T1</td></tr>
+              <tr><td class="num">M1</td><td><span class="tag-pill milestone">milestone</span> Sign off on event layout and activities</td><td>Sprint 1</td><td class="num">0 days</td><td class="num">—</td><td>T2, T3</td></tr>
+              <tr><td class="num">T4</td><td>Secure external vendors — market, live music, marquee etc.</td><td>Sprint 2</td><td class="num">3 weeks</td><td class="num">20h</td><td>M1</td></tr>
+              <tr><td class="num">T5</td><td>Set up ticketing for Masterclasses</td><td>Sprint 2</td><td class="num">1 week</td><td class="num">5h</td><td>M1</td></tr>
+              <tr><td class="num">T6</td><td>Order supplies for all activities</td><td>Sprint 2</td><td class="num">10 days</td><td class="num">8h</td><td>M1</td></tr>
+              <tr><td class="num">M2</td><td><span class="tag-pill milestone">milestone</span> Sign off on vendors and supplies</td><td>Sprint 2</td><td class="num">0 days</td><td class="num">—</td><td>T4, T5, T6</td></tr>
+              <tr><td class="num">T7</td><td>Design and launch marketing campaign</td><td>Sprint 3</td><td class="num">3 weeks</td><td class="num">15h</td><td>M1</td></tr>
+              <tr><td class="num">T8</td><td>Develop staffing allocation and rosters (event &amp; parking)</td><td>Sprint 3</td><td class="num">2 weeks</td><td class="num">12h</td><td>M1</td></tr>
+              <tr><td class="num">T9</td><td>Create Risk Register</td><td>Sprint 3</td><td class="num">1 week</td><td class="num">not given*</td><td>M1</td></tr>
+              <tr><td class="num">T10</td><td>Plan itinerary for the weekend</td><td>Sprint 3</td><td class="num">2 weeks</td><td class="num">10h</td><td>T7, T8, T9</td></tr>
+              <tr><td class="num">M3</td><td><span class="tag-pill milestone">milestone</span> Sign off on itinerary and risk register</td><td>Sprint 3</td><td class="num">0 days</td><td class="num">—</td><td>T10</td></tr>
+              <tr><td class="num">T11</td><td>Order signage</td><td>Sprint 4</td><td class="num">1 week</td><td class="num">3h</td><td>M2, M3</td></tr>
+              <tr><td class="num">T12</td><td>Prepare the farm site and activity areas</td><td>Sprint 4</td><td class="num">3 weeks</td><td class="num">25h</td><td>M2, M3</td></tr>
+              <tr><td class="num">T13</td><td>Finalise food and drink stock</td><td>Sprint 4</td><td class="num">7 days</td><td class="num">8h</td><td>M2, M3</td></tr>
+              <tr><td class="num">T14</td><td>Push out Marketing</td><td>Sprint 4</td><td class="num">2 days</td><td class="num">6h</td><td>T11, T12, T13</td></tr>
+              <tr><td class="num">T15 <b>*</b></td><td>Create event site set-up plan for Apple Big Weekend</td><td>Sprint 4</td><td class="num">your call</td><td class="num">your call</td><td>T14</td></tr>
+              <tr><td class="num">T16 <b>*</b></td><td>Prepare presentation — plan, itinerary and risks</td><td>Sprint 5</td><td class="num">your call</td><td class="num">your call</td><td>T15</td></tr>
+              <tr><td class="num">M4 <b>*</b></td><td><span class="tag-pill milestone">milestone</span> Get feedback at Management meeting</td><td>Sprint 5</td><td class="num">fixed date</td><td class="num">—</td><td>Board review: <b>7 Oct 2026</b></td></tr>
+              <tr><td class="num">T17 <b>*</b></td><td>Take on board feedback ready for the event</td><td>Sprint 5</td><td class="num">your call</td><td class="num">your call</td><td>M4</td></tr>
+            </table>
+          </div>
+          <p style="font-size:12.5px;color:var(--text-soft);">*The case study's own task table leaves "Create Risk Register" without a work-effort figure — this looks like a gap in the source data rather than a deliberate zero. Worth a one-line note in your write-up rather than silently inventing a number; a sensible estimate in line with similar 1-week tasks (roughly 5–8h) is defensible if you state your assumption.</p>
+        </div>
+
+      </section>
+
+      <section class="panel">
+        <div class="card">
+          <h3>Building the schedule</h3>
+          <ol>
+            <li>Switch to <b>Grid view</b>. Add columns for Start date, Duration and Predecessor if not already visible.</li>
+            <li>Enter every task from the map above, into its matching bucket. Set T1's start to <b>29 June 2026</b> — the fixed project start date given in the brief.</li>
+            <li>Set <b>Predecessor</b> for each task using Finish-to-Start dependencies exactly as mapped — this is what makes Planner recalculate downstream dates automatically instead of you typing dates by hand.</li>
+            <li>Tasks sharing a predecessor with no dependency between each other (e.g. T2 and T3, both only depending on T1) should run in parallel — don't chain them to each other or you'll invent a false dependency the case study never states.</li>
+            <li>Add the four milestones as zero-duration tasks. Pin <b>M4</b> to <b>7 October 2026</b> — this date is fixed by the board, not calculated from the chain.</li>
+            <li>Switch to <b>Timeline view</b>. Toggle on <b>Show critical path</b> in the filters — this highlights the actual chain of tasks controlling your finish date, which is exactly what the crashing/critical-path theory from your workshops is asking you to apply in practice.</li>
+          </ol>
+
+          <div class="callout good">
+            <b>Sanity-check your own numbers.</b> Using only the fixed durations above (ignoring the four undefined tasks for a moment), the longest chain runs: H&amp;S (14d) → Menu (16d) → <i>[M1]</i> → Marketing campaign (21d) → Itinerary (14d) → <i>[M3]</i> → Farm site prep (21d) → Push marketing (2d). That's roughly 88 elapsed days from 29 June — landing around <b>late September 2026</b>, using simple 7-day weeks as an approximation (Planner will compute exact working-day dates once you build it, which will shift this a little). That leaves only about <b>1½–2 weeks</b> before the fixed 7 October board review to fit your three undefined Sprint 5 tasks. If your Planner build shows a lot more slack than that, or a lot less, it's worth checking your dependencies before you screenshot anything.
+          </div>
+          <p style="font-size:13px;color:var(--text-soft);">Notice what this puts on your critical path: the Head Chef's menu development, the marketing campaign, the itinerary, and farm site prep — not the vendor bookings or ticketing, which have real slack. That's a genuinely useful management insight for your write-up: those are the tasks worth protecting if anything slips.</p>
+        </div>
+
+        <div class="card">
+          <h3>Resourcing (People / Charts view) — 3.2</h3>
+          <ol>
+            <li>Assign each task to yourself as PM (since work-effort hours are costed to you specifically), and add named Aruthiana staff — Katarzyna Nowak, Rita Kumar, Hans Wagner — as collaborators on tasks where the case study says they're involved, so your People view actually reflects who's delivering what.</li>
+            <li>Planner's built-in <b>Effort</b> field doesn't map cleanly onto "PM work-effort hours vs. task duration" — add a custom field for PM hours so duration (elapsed time) and effort (billed hours) stay visibly separate, matching how the case study itself distinguishes them.</li>
+            <li>Switch to <b>People view</b> to check workload balance, and <b>Charts view</b> for a bucket/status breakdown — these are your "resource report and charts" for 3.2.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>The budget report — worked method</h3>
+          <p>The fixed costs and hourly rate are already given; the arithmetic below is method, not your final answer — the four undefined tasks and your contingency figure are still your decision.</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Cost line</th><th class="num">Amount</th></tr>
+              <tr><td>Insurance changes</td><td class="num">£500</td></tr>
+              <tr><td>Music acts</td><td class="num">£5,000</td></tr>
+              <tr><td>Marquee hire &amp; set-up</td><td class="num">£15,000</td></tr>
+              <tr><td>Activity supplies</td><td class="num">£5,000</td></tr>
+              <tr><td>Marketing consultancy</td><td class="num">£1,000</td></tr>
+              <tr><td>Signage</td><td class="num">£1,500</td></tr>
+              <tr><td><b>Fixed costs subtotal</b></td><td class="num"><b>£28,000</b></td></tr>
+              <tr><td>PM effort — 162h known × £60/hr <span style="color:var(--text-soft);font-weight:400;">(sum of all given work-effort hours except the undefined tasks and the missing Risk Register figure)</span></td><td class="num">£9,720</td></tr>
+              <tr><td><b>Known total</b></td><td class="num"><b>£37,720</b></td></tr>
+              <tr><td><b>Remaining for Risk Register hours + your 4 undefined tasks + contingency</b></td><td class="num"><b>£5,280</b></td></tr>
+              <tr><td>Total project budget</td><td class="num">£43,000</td></tr>
+            </table>
+          </div>
+          <div class="callout warn">That final £5,280 is genuinely tight once you allow for any contingency at all — worth flagging explicitly in your write-up as a resourcing constraint you had to manage, which is exactly the kind of judgement LO1/LO4 want to see, rather than a number you quietly make work.</div>
+          <p>Remember: food/drink stock costs sit in the restaurant and juice-factory budgets, not this one, and temporary event-staff hiring costs are explicitly excluded from the £43,000 — don't double-count either into your report.</p>
+        </div>
+
+        <div class="card">
+          <h3>Getting it onto the page</h3>
+          <ul class="tight">
+            <li>Use landscape orientation for the Timeline/Gantt and resourcing charts — a portrait page squashes a wide timeline unreadably.</li>
+            <li>Export Grid view to Excel (via the <span class="kbd">···</span> menu) if you want cleaner budget tables than a screenshot of the browser.</li>
+            <li>Every screenshot needs 2–3 sentences underneath explaining what it shows and why — the brief specifically warns against "just a screenshot without explanation."</li>
+          </ul>
+        </div>
+
+        <div class="callout warn">
+          <b>Common Planner pitfalls, from the seminar clinic:</b> creating the plan as Basic (no Timeline tab appears); forgetting dependencies (bars sit disconnected and no critical path can be shown); mixing "weeks" and "days" inconsistently when typing durations; forgetting to pin M4 to the fixed 7 Oct date; and naming buckets generically ("To do / Doing / Done") instead of the five named sprints the brief asks for.
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="part4">
+        <div class="part-head">
+          <span class="no">Part 4</span>
+          <h2 style="margin:0;">Managing Implementation</h2>
+          <span class="word-budget">≈600 words · 300 each · 3rd person</span>
+        </div>
+        <p style="color:var(--text-soft);">LO2, LO4 · Choose exactly 2 of the 13 scenarios below. For each: analyse repercussions, explain your response, and include a re-worked Timeline (Gantt) plus your management steps.</p>
+
+        <div class="card">
+          <h3>A repeatable structure for each of your 2 scenarios</h3>
+          <ol>
+            <li><b>Diagnose</b> — is this a constraint problem (scope/schedule/cost/quality/resources/risk, PMI 2017 p.580) or a project-characteristic problem (Maylor &amp; Turner emergence, change, social construction etc.)? Name it precisely.</li>
+            <li><b>Repercussions</b> — trace the knock-on effect through your own Gantt chart from Part 3. Quantify where you can (which task moves, by how much, what becomes newly critical).</li>
+            <li><b>Response</b> — pick a real PM technique, not a generic "I would communicate with the team." If it's a threat, name the strategy: escalate, avoid, transfer, mitigate, or accept (PMI, 2021, p.123). If it's a schedule slip, this is a live crashing scenario — reference crash time/crash cost trade-offs.</li>
+            <li><b>Re-worked Gantt</b> — show the revised chart, and the 2–3 sentences explaining what changed and why.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>The 13 scenarios — and where they naturally point</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Scenario</th><th>Likely lens</th></tr>
+              <tr><td>Staff member asks for more scope, 3 days before the event</td><td>Scope creep / change control — near-zero slack to absorb it</td></tr>
+              <tr><td>Third Gantt task takes twice as long as planned</td><td>Textbook <b>crashing</b> scenario — apply crash time/cost directly</td></tr>
+              <tr><td>Food supplier delivers wrong quantities</td><td>Quality/resource risk, likely on Sprint 4 (farm/stock prep)</td></tr>
+              <tr><td>Employees not collaborating enough</td><td>Team &amp; organisation / leadership — ring-fencing tension from 2.1</td></tr>
+              <tr><td>Supplier revealed as heavily polluting</td><td>Sustainability risk — ties directly to your ISO 20121 point in 2.1/2.2</td></tr>
+              <tr><td>Project team constantly arguing</td><td>Team dynamics / leadership, not a scope or schedule issue</td></tr>
+              <tr><td>Music act backs out</td><td>Transfer/mitigate — vendor risk with a ready substitution plan</td></tr>
+              <tr><td>Team member complains they're doing all the work</td><td>Resourcing / workload balance — revisit your People view</td></tr>
+              <tr><td>"Nice-to-haves" added with no costing or agreement</td><td>Scope creep / change control — the exact problem 2.1's governance proposal exists to prevent</td></tr>
+              <tr><td>A 2.2 stakeholder wants the project closed</td><td>Governance — apply your own exit criteria from the Charter</td></tr>
+              <tr><td>A chosen supplier found using modern slavery</td><td>Ethics/ESG + procurement risk — likely <b>avoid</b> or <b>transfer</b>, not accept</td></tr>
+              <tr><td>Sponsor hospitalised at week 2</td><td>Governance/stakeholder risk — escalation and authority succession</td></tr>
+              <tr><td>Staff member badmouthing the PM to management</td><td>Stakeholder/leadership — interpersonal, not schedule-driven</td></tr>
+            </table>
+          </div>
+          <div class="callout">Picking one scope-type scenario and one risk/stakeholder-type scenario (rather than two that test the same skill) tends to demonstrate broader range across LO2/LO4 for the same word count.</div>
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="vault">
+        <div class="eyebrow">Pulled straight from the case study</div>
+        <h2>Case data vault</h2>
+        <p style="color:var(--text-soft);max-width:64ch;">So you're not re-reading the PDF at midnight. Everything here is transcription, not interpretation — the analysis is still yours to do.</p>
+
+        <div class="card">
+          <h3>Key dates</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Date</th><th>What happens</th></tr>
+              <tr><td class="num">29 Jun 2026</td><td>Apple Day Big Weekend <i>Preparation Project</i> start date (assumed, per brief)</td></tr>
+              <tr><td class="num">7 Oct 2026</td><td>Fixed board review — 2 weeks before the event</td></tr>
+              <tr><td class="num">24–25 Oct 2026</td><td>Apple Day Big Weekend itself (Sat–Sun)</td></tr>
+              <tr><td class="num">3 Aug 2026</td><td>Your assignment submission deadline</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Stakeholder roll-call</h3>
+          <p>Names and roles only — the power/interest classification and communication plan are your analysis to build in 2.1/2.2.</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>Name</th><th>Role</th></tr>
+              <tr><td>Clara Aruthiana-Addo</td><td>Co-owner, Orchard Restaurant Manager — your direct sponsor</td></tr>
+              <tr><td>William Aruthiana</td><td>Co-owner, Fruit Farm Manager</td></tr>
+              <tr><td>Kwame Aruthiana-Addo</td><td>Finance &amp; Office Manager — brought in the PM, budget authority</td></tr>
+              <tr><td>Rita Kumar</td><td>Kent Orchard Juices Manager</td></tr>
+              <tr><td>Hans Wagner</td><td>Aruthiana Store (warehouse/logistics) Manager</td></tr>
+              <tr><td>Katarzyna Nowak</td><td>Head Chef, Orchard Restaurant</td></tr>
+              <tr><td>John Aruthiana</td><td>Retired founder, still emotionally invested — soft internal stakeholder</td></tr>
+              <tr><td>Maidstone Safety Advisory Group</td><td>External — H&amp;S approval body</td></tr>
+              <tr><td>Insurance broker</td><td>External — flagged paperwork gaps after Easter</td></tr>
+              <tr><td>Ashford Hotel Group</td><td>B2B customer — cancelled standing order after Easter disruption</td></tr>
+              <tr><td>Neighbouring residents / the lane</td><td>External community — complained about parking overspill</td></tr>
+              <tr><td>Stallholders / artisan market vendors</td><td>External suppliers/partners</td></tr>
+              <tr><td>Music acts</td><td>External suppliers/entertainers</td></tr>
+              <tr><td>Visiting families / general public</td><td>End customers</td></tr>
+              <tr><td>Casual/agency event staff</td><td>Internal HR risk — a staff member resigned after Easter's unpredictable hours</td></tr>
+            </table>
+          </div>
+          <div class="callout warn"><b>Data quirk worth knowing:</b> the case study spells this manager's name two ways — "Riya Kumar" once in the org-structure section, "Rita Kumar" everywhere else including the budget and dialogue. Pick one (Rita is used more consistently) and use it throughout; markers will notice inconsistency more than the choice itself.</div>
+        </div>
+
+        <div class="card">
+          <h3>Financial summary — Easter on the Farm (Fig. 3)</h3>
+          <div class="table-wrap">
+            <table>
+              <tr><th></th><th class="num">Typical Easter (prior years)</th><th class="num">Easter event 2026</th></tr>
+              <tr><td>Footfall (4 days)</td><td class="num">750</td><td class="num">5,800</td></tr>
+              <tr><td>Revenue</td><td class="num">£14,000</td><td class="num">£82,000</td></tr>
+              <tr><td>Direct event costs</td><td class="num">minimal</td><td class="num">£21,000</td></tr>
+              <tr><td>Net revenue contribution</td><td class="num">£13,500</td><td class="num">£61,000</td></tr>
+            </table>
+          </div>
+          <p style="font-size:13px;color:var(--text-soft);">Genuinely useful evidence for your Charter's business case / project purpose — the commercial upside is real, which is exactly why the board wants to repeat it properly rather than not at all.</p>
+        </div>
+
+        <div class="card">
+          <h3>Aruthiana's 5 departments</h3>
+          <ul class="tight">
+            <li><b>Fruits Farm</b> — William Aruthiana</li>
+            <li><b>Orchard Restaurant</b> — Clara Aruthiana-Addo, with Katarzyna Nowak as Head Chef</li>
+            <li><b>Kent Orchard Juices &amp; Ciders</b> — Rita Kumar</li>
+            <li><b>Aruthiana Store</b> (warehouse/logistics) — Hans Wagner</li>
+            <li><b>Aruthiana Office</b> (finance, HR, legal) — Kwame Aruthiana-Addo</li>
+          </ul>
+        </div>
+
+        <div class="callout warn">
+          <b>Don't mix up your two case scenarios.</b> Your seminar workshops also ran a separate practice exercise around a fictional "Events Expert" app and a Study Buddies deployment/monitoring activity — that's a rehearsal exercise for learning Planner and monitoring &amp; controlling concepts. Your actual graded assignment (Parts 2–4) is entirely about <b>Aruthiana Fruits and Apple Day</b>. Keep the practice scenario out of your submitted report.
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="templates">
+        <div class="eyebrow">Structure only — you fill these in</div>
+        <h2>Blank templates</h2>
+        <p style="color:var(--text-soft);max-width:64ch;">Skeletons, not answers. Copy the headings into your own document and draft against them.</p>
+
+        <div class="card">
+          <h3>Project Charter skeleton — 2.2</h3>
+          <table>
+            <tr><td style="width:38%;"><b>Project purpose</b></td><td><i>why this project exists, in one paragraph</i></td></tr>
+            <tr><td><b>Objectives &amp; success criteria</b></td><td><i>SMART — specific, measurable, achievable, relevant, timed</i></td></tr>
+            <tr><td><b>High-level requirements</b></td><td><i>what must be true for the event to work</i></td></tr>
+            <tr><td><b>Description, boundaries &amp; deliverables</b></td><td><i>what's in scope, what's explicitly out</i></td></tr>
+            <tr><td><b>Overall project risk</b></td><td><i>one-paragraph risk appetite statement</i></td></tr>
+            <tr><td><b>Summary milestone schedule</b></td><td><i>your 4 sign-off milestones + 7 Oct board review</i></td></tr>
+            <tr><td><b>Pre-approved financial resources</b></td><td><i>£43,000, broken down by line</i></td></tr>
+            <tr><td><b>Key stakeholder list</b></td><td><i>from your 2.1 stakeholder analysis</i></td></tr>
+            <tr><td><b>Approval requirements</b></td><td><i>who decides success, who signs off</i></td></tr>
+            <tr><td><b>Exit criteria</b></td><td><i>conditions to close or cancel the project</i></td></tr>
+            <tr><td><b>PM authority &amp; responsibility</b></td><td><i>what you can decide alone vs. escalate</i></td></tr>
+            <tr><td><b>Sponsor name &amp; authority</b></td><td><i>Clara Aruthiana-Addo — her sign-off authority</i></td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Stakeholder register + Mendelow grid — 2.1</h3>
+          <table>
+            <tr><th>Stakeholder</th><th>Power</th><th>Interest</th><th>Quadrant</th><th>Engagement approach</th></tr>
+            <tr><td colspan="5" style="color:var(--text-soft);font-style:italic;">one row per stakeholder from the roll-call in the Vault</td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Risk register — 2.1 / 2.2</h3>
+          <table>
+            <tr><th>Risk</th><th>Probability (1–5)</th><th>Severity (1–5)</th><th>Category (A/R/U/I)</th><th>Response strategy</th><th>Owner</th></tr>
+            <tr><td colspan="6" style="color:var(--text-soft);font-style:italic;">weather, waste management, visitor safety, supplier ethics/sustainability at minimum</td></tr>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Skills reflection table — Part 1</h3>
+          <table>
+            <tr><th>Skill</th><th>Had before?</th><th>Score 1–5 (start)</th><th>Evidence</th><th>Improved by end?</th><th>Score 1–5 (end)</th></tr>
+            <tr><td colspan="6" style="color:var(--text-soft);font-style:italic;">one row per skill from your 1.1 list</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <div class="row-divider"><svg viewBox="0 0 900 34" preserveAspectRatio="none" width="100%" height="34"><g class="treeRowGen"></g></svg></div>
+
+      <section class="panel" id="checklist">
+        <div class="eyebrow">Before you submit</div>
+        <h2>Pre-submission check</h2>
+        <p style="color:var(--text-soft);max-width:64ch;">Ticks are saved in this browser as you go. If you're viewing this on GitHub Pages or as a local file, your progress will still be there next time you open it; inside a Claude preview window it may not persist between sessions.</p>
+
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="flex:1;height:8px;background:var(--paper-3);border-radius:6px;overflow:hidden;">
+              <div id="progressBar" style="height:100%;width:0%;background:var(--leaf-deep);transition:width .3s;"></div>
+            </div>
+            <span id="progressLabel" style="font-family:var(--mono);font-size:12px;color:var(--text-soft);white-space:nowrap;">0 / 0 done</span>
+            <button onclick="resetChecklist()" style="font-family:var(--mono);font-size:11px;background:none;border:1px solid var(--line);border-radius:4px;padding:5px 10px;cursor:pointer;color:var(--text-soft);">reset</button>
+          </div>
+
+          <div class="gate-label" style="color:var(--amber-deep);padding:0;">Part 1 — Skills</div>
+          <label class="chk-row"><input type="checkbox" data-chk="p1-1"> Skills table covers soft / organisational / technical, each with a named reference</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p1-2"> Every reflection point has claim + evidence + explanation, not a bare claim</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p1-3"> Start-of-module and end-of-module reflections both present, Buddycheck feedback referenced</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p1-4"> Written in 1st person (the one section where this is correct)</label>
+
+          <div class="gate-label" style="color:var(--amber-deep);padding:0;margin-top:14px;">Part 2 — Proposal &amp; Charter</div>
+          <label class="chk-row"><input type="checkbox" data-chk="p2-1"> All 4 proposal bullets addressed in order, each with its own reference</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p2-2"> Stakeholder approach is a reusable organisational method, not just a one-off list</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p2-3"> Risk approach includes sustainability explicitly (ISO 20121 or equivalent)</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p2-4"> Charter covers all 12 full-practice elements, not just the 3-item minimum</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p2-5"> Written in 3rd person, objective tone — no "I" or "my"</label>
+
+          <div class="gate-label" style="color:var(--amber-deep);padding:0;margin-top:14px;">Part 3 — Plan &amp; resourcing</div>
+          <label class="chk-row"><input type="checkbox" data-chk="p3-1"> Plan created as Premium/Advanced (Timeline tab visible)</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p3-2"> All 5 sprints as named buckets; dependencies set; Timeline shows critical path</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p3-3"> Board and Timeline/Grid screenshots each have 2–3 sentences of explanation, in landscape</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p3-4"> Budget report reconciles to £43,000 with contingency shown</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p3-5"> People/Charts view resourcing report included</label>
+
+          <div class="gate-label" style="color:var(--amber-deep);padding:0;margin-top:14px;">Part 4 — Implementation</div>
+          <label class="chk-row"><input type="checkbox" data-chk="p4-1"> Exactly 2 scenarios chosen, ~300 words each</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p4-2"> Each has a re-worked Gantt chart, not just prose</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p4-3"> Each response names a specific technique (threat strategy / crashing), not generic advice</label>
+          <label class="chk-row"><input type="checkbox" data-chk="p4-4"> 3rd person, objective tone</label>
+
+          <div class="gate-label" style="color:var(--amber-deep);padding:0;margin-top:14px;">Whole document</div>
+          <label class="chk-row"><input type="checkbox" data-chk="wd-1"> Title page and contents page present</label>
+          <label class="chk-row"><input type="checkbox" data-chk="wd-2"> Consistent referencing style, full reference list / bibliography</label>
+          <label class="chk-row"><input type="checkbox" data-chk="wd-3"> Spelling and grammar checked</label>
+          <label class="chk-row"><input type="checkbox" data-chk="wd-4"> Word counts roughly match each section's share (tables/charts/figures excluded, per brief)</label>
+          <label class="chk-row"><input type="checkbox" data-chk="wd-5"> "Rita Kumar" spelling used consistently (see Vault note)</label>
+        </div>
+      </section>
+
+      <footer>
+        Companion study guide for MOD007198, built from the Aruthiana Fruits case study and seminar materials. This is a study aid, not a substitute for your own analysis or your tutor's guidance — always check current detail against Canvas and your seminar leader.
+      </footer>
+
+
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // hero orchard row
+  (function(){
+    const g = document.getElementById('treeRowHero');
+    let s = '';
+    for(let i=0;i<26;i++){
+      const x = 10 + i*35;
+      s += `<g class="tree" transform="translate(${x},0)">
+        <line x1="0" y1="110" x2="0" y2="92" stroke="#7d4c14" stroke-width="2"/>
+        <circle cx="0" cy="84" r="9" fill="none" stroke="#3f6b3d" stroke-width="1.6"/>
+      </g>`;
+    }
+    g.innerHTML = s;
+  })();
+
+  // small divider orchard rows throughout the document
+  document.querySelectorAll('.treeRowGen').forEach(g=>{
+    let s = '';
+    for(let i=0;i<24;i++){
+      const x = 6 + i*38;
+      s += `<g transform="translate(${x},0)">
+        <line x1="0" y1="34" x2="0" y2="20" stroke="#c9bd97" stroke-width="1.4"/>
+        <circle cx="0" cy="13" r="6.5" fill="none" stroke="#c9bd97" stroke-width="1.2"/>
+      </g>`;
+    }
+    g.innerHTML = s;
+    g.closest('svg').insertAdjacentHTML('afterbegin','<line x1="0" y1="34" x2="900" y2="34" stroke="#c9bd97" stroke-width="1"/>');
+  });
+
+  // active link highlight on click + mobile close
+  document.querySelectorAll('.gate-link').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      document.querySelectorAll('.gate-link').forEach(l=>l.classList.remove('active'));
+      link.classList.add('active');
+      document.querySelector('.field-gate').classList.remove('open');
+    });
+  });
+
+  // scroll-spy: highlight nav link for section in view
+  (function(){
+    const sections = document.querySelectorAll('section.panel[id]');
+    const links = Array.from(document.querySelectorAll('.gate-link'));
+    const byHash = h => links.find(l => l.getAttribute('href') === '#'+h);
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const l = byHash(e.target.id);
+          if(l) l.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-10% 0px -70% 0px'});
+    sections.forEach(s=>obs.observe(s));
+  })();
+
+  // ---- pre-submission checklist: persisted via localStorage ----
+  const STORAGE_KEY = 'appleDayFieldBook_checklist_v1';
+  const boxes = Array.from(document.querySelectorAll('[data-chk]'));
+
+  function loadChecklist(){
+    let saved = {};
+    try{
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if(raw) saved = JSON.parse(raw);
+    }catch(e){
+      console.warn('Checklist storage unavailable in this preview — progress will still work while this tab stays open, but won\'t be saved. It will persist normally once hosted (e.g. on GitHub Pages) or opened as a local file.', e);
+    }
+    boxes.forEach(b=>{
+      const key = b.getAttribute('data-chk');
+      b.checked = !!saved[key];
+    });
+    updateProgress();
+  }
+
+  function saveChecklist(){
+    const state = {};
+    boxes.forEach(b=>{ state[b.getAttribute('data-chk')] = b.checked; });
+    try{
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }catch(e){
+      console.warn('Could not persist checklist state in this environment.', e);
+    }
+  }
+
+  function updateProgress(){
+    const total = boxes.length;
+    const done = boxes.filter(b=>b.checked).length;
+    const pct = total ? Math.round((done/total)*100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = done + ' / ' + total + ' done';
+  }
+
+  function resetChecklist(){
+    boxes.forEach(b=>b.checked=false);
+    saveChecklist();
+    updateProgress();
+  }
+  window.resetChecklist = resetChecklist;
+
+  boxes.forEach(b=>{
+    b.addEventListener('change', ()=>{ saveChecklist(); updateProgress(); });
+  });
+
+  loadChecklist();
+</script>
+</body>
+</html>
